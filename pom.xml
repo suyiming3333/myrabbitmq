@@ -6,14 +6,17 @@
     <groupId>com.corn</groupId>
     <artifactId>my-rabbitmq</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>my-rabbitmq</name>
+
+
     <modules>
+        <module>common-demo</module>
         <module>consumer-demo</module>
         <module>productor-demo</module>
     </modules>
 
-    <packaging>pom</packaging>
 
-    <name>my-rabbitmq</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>

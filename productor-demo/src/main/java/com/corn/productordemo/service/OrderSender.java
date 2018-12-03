@@ -23,8 +23,8 @@ public class OrderSender {
         correlationData.setId(order.getId());
 
         rabbitTemplate.convertAndSend(
-                "order-exchange",//交换机
-                "order.1234",//路由键
+                "order-exchange-direct1",//交换机
+                "d1",//路由键
                 order,//消息内容
                 correlationData//消息唯一ID
         );

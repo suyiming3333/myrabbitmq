@@ -1,6 +1,6 @@
 package com.corn.consumerdemo;
 
-import com.corn.consumerdemo.service.OrderReciever;
+import com.corn.consumerdemo.service.topic.OrderReciever;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

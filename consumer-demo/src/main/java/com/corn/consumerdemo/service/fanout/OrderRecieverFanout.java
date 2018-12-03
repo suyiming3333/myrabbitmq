@@ -1,4 +1,4 @@
-package com.corn.consumerdemo.service;
+package com.corn.consumerdemo.service.fanout;
 
 import com.corn.commondemo.entity.Order;
 import com.rabbitmq.client.Channel;
@@ -18,12 +18,12 @@ import java.util.Map;
  */
 
 @Component
-public class OrderReciever {
+public class OrderRecieverFanout {
 
-    //配置监听队列
+    //配置监听队列 fanout 将消息投递到所有绑定到改交换机的所有队列（routing-key 无作用）
     @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = "order-queue",durable = "true"),
-            exchange = @Exchange(value = "order-exchange",durable = "true",type = "topic"))
+            value = @Queue(value = "order-queue-fanout1",durable = "true"),
+            exchange = @Exchange(value = "order-exchange-fanout",durable = "true",type = "fanout"))
             //key = "order.*"
     )
 
@@ -32,7 +32,7 @@ public class OrderReciever {
     public void onOrderMessage(@Payload Order order,//消息的内容
                                @Headers Map<String,Object> headers,//消息属性
                                Channel channel) throws IOException {//手工签收需要调用channel
-        System.out.println("---------收到消息-----------");
+        System.out.println("---------order-queue-fanout1收到消息-----------");
         System.out.println("订单id"+order.getId());
         System.out.println("订单名称"+order.getName());
         System.out.println("消息ID"+order.getMessageId());
